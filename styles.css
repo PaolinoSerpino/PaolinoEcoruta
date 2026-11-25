@@ -1,17 +1,21 @@
-
+/* =========================================
+   VARIABLES GLOBALES (:root)
+   ========================================= */
 :root {
-    /* Colores */
-    --color-primary: #2d6a4f; 
-    --color-secondary: #d8f3dc; 
-    --color-accent: #ff9f1c; 
-    --color-bg: #f8f9fa; 
-    --color-text: #333333; 
-    --color-text-light: #555555;
-    
+    /* Paleta: Blanco, Azul y Verde */
+    --color-primary: #0f4c81;       /* Azul: confianza, cielo, mar y títulos */
+    --color-primary-light: #e8f1f8; /* Azul muy suave para fondos destacados */
+    --color-secondary: #2d6a4f;     /* Verde: naturaleza y botones de acción */
+    --color-secondary-hover: #1b4332;
+    --color-bg: #ffffff;            /* Blanco: fondo principal limpio */
+    --color-surface: #f8fafc;       /* Gris/blanco suave para contraste */
+    --color-text: #1f2937;          /* Texto principal oscuro legible */
+    --color-text-light: #4b5563;
+
     /* Tipografías */
-    --font-primary: 'Helvetica Neue', Arial, sans-serif;
-    --font-heading: 'Georgia', serif;
-    
+    --font-heading: 'Montserrat', sans-serif;
+    --font-primary: 'Open Sans', sans-serif;
+
     /* Espaciados */
     --spacing-sm: 8px;
     --spacing-md: 16px;
@@ -19,11 +23,17 @@
     --spacing-xl: 64px;
 }
 
-
+/* =========================================
+   RESETEO BÁSICO Y ESTILOS GENERALES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -43,22 +53,30 @@ p {
     margin-bottom: var(--spacing-md);
 }
 
-
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
+/* =========================================
+   DISEÑO MOBILE FIRST (Celulares)
+   ========================================= */
 
+/* Header y Navegación */
 .main-header {
-    background-color: #ffffff;
+    background-color: var(--color-bg);
     padding: var(--spacing-md);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-bottom: 2px solid var(--color-primary-light);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
+}
+
+.logo h2 {
+    margin-bottom: 0;
+    color: var(--color-primary);
 }
 
 .nav-list {
@@ -71,17 +89,20 @@ img {
 
 .nav-list a {
     text-decoration: none;
-    color: var(--color-text);
-    font-weight: bold;
-    padding: var(--spacing-sm);
-    transition: color 0.3s ease;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-list a:hover {
-    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    color: #ffffff;
 }
 
-
+/* Secciones generales */
 section {
     padding: var(--spacing-lg) var(--spacing-md);
 }
@@ -91,26 +112,32 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    background-color: var(--color-secondary);
-    border-radius: 8px;
+    background-color: var(--color-primary-light);
+    border-radius: 12px;
     margin: var(--spacing-md);
     padding: var(--spacing-lg);
 }
 
 .subtitle {
-    font-size: 0.9rem;
-    color: var(--color-text-light);
+    font-size: 0.85rem;
+    color: var(--color-secondary);
     letter-spacing: 2px;
 }
 
-.responsive-img {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.title {
+    font-size: 1.8rem;
 }
 
+.responsive-img {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(15, 76, 129, 0.15);
+}
+
+/* Sección Destinos y Tarjetas */
 .section-title {
     text-align: center;
     margin-bottom: var(--spacing-lg);
+    font-size: 1.6rem;
 }
 
 .card-container {
@@ -121,10 +148,11 @@ section {
 }
 
 .card {
-    background-color: #ffffff;
+    background-color: var(--color-surface);
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
-    overflow: hidden; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -132,57 +160,73 @@ section {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 20px rgba(15, 76, 129, 0.14);
 }
 
 .card-img {
     width: 100%;
     height: 220px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .card-content {
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .card-tag {
     font-size: 0.8rem;
-    color: var(--color-primary);
-    background-color: var(--color-secondary);
-    padding: 4px 8px;
+    color: var(--color-secondary);
+    background-color: #d8f3dc;
+    padding: 4px 10px;
     border-radius: 4px;
     align-self: flex-start;
     margin-bottom: var(--spacing-sm);
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .card-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
 }
 
 .card-description {
     color: var(--color-text-light);
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
+/* Botones y Enlaces (Acento Verde) */
 .card-btn, .link-btn {
     display: inline-block;
     text-decoration: none;
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: #ffffff;
+    font-family: var(--font-heading);
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 6px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 600;
     margin-top: var(--spacing-md);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .card-btn:hover, .link-btn:hover {
-    background-color: var(--color-accent);
+    background-color: var(--color-secondary-hover);
+    transform: scale(1.02);
+}
+
+/* Sección Dato Destacado */
+.section-info {
+    background-color: var(--color-surface);
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.info-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Footer */
@@ -192,7 +236,7 @@ section {
     padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     text-align: center;
 }
 
@@ -201,13 +245,14 @@ section {
 }
 
 .main-footer p {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
-
+/* =========================================
+   MEDIA QUERIES (Tablets y Computadoras)
+   ========================================= */
 
 @media (min-width: 768px) {
-   
     .main-header {
         flex-direction: row;
         justify-content: space-between;
@@ -216,7 +261,7 @@ section {
 
     .nav-list {
         flex-direction: row;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-md);
     }
 
     .section-hero {
@@ -226,17 +271,13 @@ section {
         padding: var(--spacing-xl);
     }
 
-    .hero-text {
-        flex: 1;
-    }
-
-    .hero-image {
+    .hero-text, .hero-image {
         flex: 1;
     }
 
     .card-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         padding: 0 var(--spacing-xl);
     }
 
@@ -246,8 +287,18 @@ section {
         text-align: left;
         align-items: center;
     }
-    
+
     .slogan {
         font-style: italic;
+    }
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-size: 2.3rem;
+    }
+
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
